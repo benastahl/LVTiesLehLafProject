@@ -207,6 +207,11 @@ def job_internship():
 
     return render_template("jobinternship.html", user=user)
 
+@app.route("/logout", methods=["GET"])
+def logout():
+    response = make_response(redirect("/login"))
+    response.set_cookie("auth_token", "", 0)
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True, port=5555)
