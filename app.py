@@ -180,17 +180,32 @@ def dashboard():
 
 @app.route("/tutoring", methods=["GET"])
 def tutoring():
-    return render_template("tutoring.html")
+    auth_token = request.cookies.get("auth_token")
+    user = User.objects(auth_token=auth_token).first()
+    if not user:
+        return redirect("/signup")
+
+    return render_template("tutoring.html", user=user)
 
 
 @app.route("/volunteering", methods=["GET"])
 def volunteering():
-    return render_template("volunteer.html")
+    auth_token = request.cookies.get("auth_token")
+    user = User.objects(auth_token=auth_token).first()
+    if not user:
+        return redirect("/signup")
+
+    return render_template("volunteer.html", user=user)
 
 
 @app.route("/job-internship", methods=["GET"])
 def job_internship():
-    return render_template("jobinternship.html")
+    auth_token = request.cookies.get("auth_token")
+    user = User.objects(auth_token=auth_token).first()
+    if not user:
+        return redirect("/signup")
+
+    return render_template("jobinternship.html", user=user)
 
 
 if __name__ == '__main__':
