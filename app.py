@@ -70,6 +70,12 @@ def process_signup():
     username = request.form["username"]
     zip_code = request.form["zip"]
 
+    if not verify_zipcode(zip_code):
+        return render_template(
+            "signup.html",
+            error="Zip code invalid. Please use a Lehigh Valley zip code.",
+        )
+
     # Check if email or username is already in use.
     if User.objects(email=email).first() or User.objects(username=username).first():
         return render_template(

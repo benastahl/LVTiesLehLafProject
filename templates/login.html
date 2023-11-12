@@ -19,7 +19,7 @@
           <input type="text" id="Login Email" name="email" placeholder="email">
           <input type="password" id="Login Password" name="pass" placeholder="password">
           {% if error %}
-            <p class="error-occurrence" id="error-occurrence">{{ message["message"] }}</p>
+            <p class="error-occurrence" id="error-occurrence">{{ error }}</p>
           {% endif %}
           <input type="submit" value="LOGIN">
           <p class="message">Not registered?
